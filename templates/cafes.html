@@ -1,0 +1,72 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table">
+          <!-- This is where you will write the code to render a Bootstrap 
+          Table that contains all the information from the 
+          cafe-data.csv file. -->
+
+  <tbody>
+
+        <td>Name </td>
+        <td>Map Link</td>
+        <td>Image Link</td>
+        <td> Location </td>
+        <td>Seats </td>
+        <td>Has_Toilet</td>
+        <td>Has_Wifi</td>
+        <td>can_take_calls</td>
+        <td> coffee_price</td>
+        <td>open</td>
+        <td>close</td>
+
+        <td>delete</td>
+
+
+
+    <tr>
+      {% for cafe in cafes%}
+        <tr>
+            <td>{{ cafe.name }}</td>
+        <td><a href="<td>{{ cafe.map_url}}</td>">Map Link</a></td>
+        <td><a href="<td>{{ cafe.map_url}}</td>">image Link</a></td>
+        <td>{{ cafe.location }}</td>
+        <td>{{ cafe.seats }}</td>
+        <td>{{ cafe.has_toilet }}</td>
+        <td>{{ cafe.has_wifi }}</td>
+        <td>{{ cafe.can_take_calls }}</td>
+        <td>{{ cafe.coffee_price }}</td>
+        <td>{{ cafe.open }}</td>
+        <td>{{ cafe.close }}</td>
+
+        <td><a href="{{url_for('delete_post', cafe_id=cafe.id) }}">✘</a></td>
+        </tr>
+
+      {%endfor%}
+
+    </tr>
+
+
+
+  </tbody>
+  	  </table>
+
+      <p><a href="{{ url_for('home') }}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
